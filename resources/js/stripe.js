@@ -5,28 +5,28 @@
 export async function initStripe() {
     const stripe = await loadStripe('pk_test_51HE8GPKefGJxVN6gW7Cnd6kZ9gmG4C5Ld7Ps00tUrZiPBChqiv5tyxmhyIbJr9Sqcgc1WQOw1JimsE8yWoIJJdRR00vptNMcNJ');
     let card = null;
-    // function mountWidget() {
-    //         const elements = stripe.elements()
+    function mountWidget() {
+            const elements = stripe.elements()
 
-    //     let style = {
-    //         base: {
-    //         color: '#32325d',
-    //         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-    //         fontSmoothing: 'antialiased',
-    //         fontSize: '16px',
-    //         '::placeholder': {
-    //             color: '#aab7c4'
-    //         }
-    //         },
-    //         invalid: {
-    //         color: '#fa755a',
-    //         iconColor: '#fa755a'
-    //         }
-    //     };
+        let style = {
+            base: {
+            color: '#32325d',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#aab7c4'
+            }
+            },
+            invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+            }
+        };
 
-    //     card = elements.create('card', { style, hidePostalCode: true })
-    //     card.mount('#card-element')
-    // }
+        card = elements.create('card', { style, hidePostalCode: true })
+        card.mount('#card-element')
+    }
 
     const paymentType = document.querySelector('#paymentType');
     if(!paymentType) {
@@ -67,13 +67,13 @@ if(paymentForm) {
         placeOrder(formObject);
 
 
-        // // Verify card
-        // stripe.createToken(card).then((result) => {
-        //     formObject.stripeToken = result.token.id;
-        //     placeOrder(formObject);
-        // }).catch((err) => {
-        //     console.log(err)
-        // })
+        // Verify card
+        stripe.createToken(card).then((result) => {
+            formObject.stripeToken = result.token.id;
+            placeOrder(formObject);
+        }).catch((err) => {
+            console.log(err)
+        })
 
     })
 }

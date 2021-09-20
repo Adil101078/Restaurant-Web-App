@@ -1,0 +1,47 @@
+<section class="menu container mx-auto py-8">
+  <h1 class="text-xl font-bold mb-8">
+    All Foods
+    <button
+      onClick="window.location.href='/addItem'"
+      class=" btn-sm float-right add-to-cart py-1 px-6 rounded-full flex items-center font-bold"
+    >
+      <span class="ml-4">Add New Item</span>
+    </button>
+  </h1>
+ 
+
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 col-gap-12 row-gap-16"
+  >
+    <% foods.forEach(function(food) { %>
+    <div class="w-full md:w-64">
+      <img class="h-40 mb-4 mx-auto" src="/img/<%= food.image %>" alt="" />
+      <div class="text-center">
+        <h2 class="mb-4 text-lg">
+          <%= food.name %>
+        </h2>
+        <span class="size py-1 px-4 rounded-full uppercase text-xs">
+          <%= food.size %>
+        </span>
+        <div class="flex items-center justify-around mt-6">
+          <span class="font-bold text-lg">₹<%= food.price %></span>
+          <!-- <form action='/adminMenu/<%=food._id%>?_method=DELETE' method='POST'><button class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">
+                        
+                            <span class="ml-4">Delete</span>
+                        </button></form> -->
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</section>
+<script>
+    // Grab HTML Elements
+    const btn = document.querySelector("button.mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+
+    // Add Event Listeners
+    btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+    });
+</script>

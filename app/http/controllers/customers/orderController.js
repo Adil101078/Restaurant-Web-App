@@ -18,7 +18,7 @@ function orderController () {
             })
             order.save().then(result => {
                 Order.populate(result, { path: 'customerId' }, (err, placedOrder) => {
-                    // req.flash('success', 'Order placed successfully')
+                     req.flash('success', 'Order placed successfully')
 
                     // Stripe payment
                     if(paymentType === 'card') {
@@ -42,7 +42,7 @@ function orderController () {
 
                         }).catch((err) => {
                             delete req.session.cart
-                            return res.json({ message : 'OrderPlaced but payment failed, You can pay at delivery time' });
+                            return res.json({ message : 'Payment successful, Order placed successfully' });
                         })
                     } else {
                         delete req.session.cart
