@@ -34,13 +34,13 @@ const eventEmitter = new Emitter()
 app.set('eventEmitter', eventEmitter)
 
 // Session config
-app.use(session({
-    secret: thisismysecret,
-    resave: false,
-    store: mongoStore,
-    saveUninitialized: false,
-    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
-}))
+// app.use(session({
+//     secret: thisismysecret,
+//     resave: false,
+//     store: mongoStore,
+//     saveUninitialized: false,
+//     cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
+// }))
 
 // Passport config
 const passportInit = require('./app/config/passport')
